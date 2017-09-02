@@ -69,7 +69,17 @@
                 <div class="device">
                   <div class="screen">
                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/screen1.png" class="img-fluid" alt=""/>
+                    <div class="slider-images">
+                      <div style="display: inline-block;">
+                        <img src="img/screen1.png" class="img-fluid" alt=""/>
+                      </div>
+                       <div>
+                        <img src="img/screen8.png" class="img-fluid" alt=""/>
+                      </div>
+                      <div>
+                        <img src="img/screen3.png" class="img-fluid" alt=""/>
+                      </div>
+                    </div>
                   </div>
                   <div class="button">
                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -226,7 +236,22 @@
 
 </html>
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('.bxslider').bxSlider();
-  });  
+ 
+  var currentIndex = 0,
+  items = $('.slider-images div'),
+  itemAmt = items.length;
+
+function cycleItems() {
+  var item = $('.slider-images div').eq(currentIndex);
+  items.hide();
+  item.css('display','inline-block');
+}
+
+var autoSlide = setInterval(function() {
+  currentIndex += 1;
+  if (currentIndex > itemAmt - 1) {
+    currentIndex = 0;
+  }
+  cycleItems();
+}, 2300);
 </script>
